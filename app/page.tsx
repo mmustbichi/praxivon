@@ -1,103 +1,242 @@
-import Image from "next/image";
+
+"use client";
+
+import { MainLayout } from "@/components/layout/main-layout";
+import { CardsSlider } from "@/components/cards-slider";
+import { Button } from "@/components/ui/button";
+import { 
+  BookOpen, 
+  Users, 
+  Trophy, 
+  TrendingUp,
+  Play,
+  Calendar,
+  Clock,
+  Target
+} from "lucide-react";
+
+const featuredCourses = [
+  {
+    id: "1",
+    title: "Full Stack Web Development with React & Node.js",
+    description: "Learn to build modern web applications from scratch using React, Node.js, and MongoDB.",
+    instructor: "Sarah Johnson",
+    duration: "12 weeks",
+    students: 2400,
+    rating: 4.8,
+    image: "/course1.jpg",
+    level: "Intermediate" as const,
+    category: "Web Development",
+  },
+  {
+    id: "2",
+    title: "Python for Data Science and Machine Learning",
+    description: "Master Python programming and dive into data science with pandas, numpy, and scikit-learn.",
+    instructor: "Dr. Michael Chen",
+    duration: "10 weeks",
+    students: 1800,
+    rating: 4.9,
+    image: "/course2.jpg",
+    level: "Beginner" as const,
+    category: "Data Science",
+  },
+  {
+    id: "3",
+    title: "DevOps Engineering with AWS and Docker",
+    description: "Learn modern DevOps practices with containerization, CI/CD, and cloud infrastructure.",
+    instructor: "Alex Rodriguez",
+    duration: "8 weeks",
+    students: 1200,
+    rating: 4.7,
+    image: "/course3.jpg",
+    level: "Advanced" as const,
+    category: "DevOps",
+  },
+  {
+    id: "4",
+    title: "Mobile App Development with React Native",
+    description: "Build cross-platform mobile applications using React Native and Expo.",
+    instructor: "Lisa Park",
+    duration: "6 weeks",
+    students: 950,
+    rating: 4.6,
+    image: "/course4.jpg",
+    level: "Intermediate" as const,
+    category: "Mobile Development",
+  },
+];
+
+const popularCourses = [
+  {
+    id: "5",
+    title: "JavaScript Fundamentals for Beginners",
+    description: "Start your programming journey with JavaScript basics and modern ES6+ features.",
+    instructor: "John Doe",
+    duration: "4 weeks",
+    students: 3200,
+    rating: 4.8,
+    image: "/course5.jpg",
+    level: "Beginner" as const,
+    category: "Programming",
+  },
+  {
+    id: "6",
+    title: "Cybersecurity Fundamentals",
+    description: "Learn the essentials of cybersecurity, network security, and ethical hacking.",
+    instructor: "Emily White",
+    duration: "8 weeks",
+    students: 1600,
+    rating: 4.7,
+    image: "/course6.jpg",
+    level: "Intermediate" as const,
+    category: "Security",
+  },
+  {
+    id: "7",
+    title: "UI/UX Design Masterclass",
+    description: "Master design principles, user research, and prototyping with industry tools.",
+    instructor: "David Kim",
+    duration: "10 weeks",
+    students: 2100,
+    rating: 4.9,
+    image: "/course7.jpg",
+    level: "Beginner" as const,
+    category: "Design",
+  },
+];
+
+const stats = [
+  { icon: BookOpen, label: "Active Courses", value: "150+" },
+  { icon: Users, label: "Students", value: "25K+" },
+  { icon: Trophy, label: "Certificates", value: "5K+" },
+  { icon: TrendingUp, label: "Success Rate", value: "94%" },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <MainLayout>
+      <div className="space-y-8">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground p-8 md:p-12">
+          <div className="relative z-10">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Practice Your Tech Destiny
+              </h1>
+              <p className="text-xl mb-6 opacity-90">
+                Master cutting-edge technologies with hands-on projects, expert mentorship, 
+                and a supportive community of learners.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" variant="secondary">
+                  <Play className="mr-2 h-5 w-5" />
+                  Start Learning
+                </Button>
+                <Button size="lg" variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
+                  Browse Courses
+                </Button>
+              </div>
+            </div>
+          </div>
+          
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <div className="absolute top-8 right-8 w-32 h-32 rounded-full bg-primary-foreground/20"></div>
+            <div className="absolute top-24 right-24 w-16 h-16 rounded-full bg-primary-foreground/30"></div>
+            <div className="absolute bottom-8 right-16 w-24 h-24 rounded-full bg-primary-foreground/20"></div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        {/* Stats Section */}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <div key={index} className="bg-card border rounded-lg p-6 text-center">
+                <Icon className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <div className="text-2xl font-bold mb-1">{stat.value}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </div>
+            );
+          })}
+        </section>
+
+        {/* Quick Actions */}
+        <section className="grid md:grid-cols-3 gap-6">
+          <div className="bg-card border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mr-3">
+                <Target className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="font-semibold">My Learning Path</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Continue your personalized learning journey
+            </p>
+            <Button variant="outline" className="w-full">
+              Continue Learning
+            </Button>
+          </div>
+
+          <div className="bg-card border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center mr-3">
+                <Calendar className="h-5 w-5 text-green-600 dark:text-green-400" />
+              </div>
+              <h3 className="font-semibold">Upcoming Events</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Live sessions and webinars this week
+            </p>
+            <Button variant="outline" className="w-full">
+              View Schedule
+            </Button>
+          </div>
+
+          <div className="bg-card border rounded-lg p-6">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center mr-3">
+                <Clock className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="font-semibold">Study Streak</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Keep your learning momentum going
+            </p>
+            <Button variant="outline" className="w-full">
+              7 Days Strong!
+            </Button>
+          </div>
+        </section>
+
+        {/* Course Sliders */}
+        <CardsSlider 
+          title="Featured Courses" 
+          courses={featuredCourses}
+        />
+        
+        <CardsSlider 
+          title="Popular This Week" 
+          courses={popularCourses}
+        />
+
+        {/* Call to Action */}
+        <section className="bg-muted rounded-2xl p-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Join thousands of learners who are already advancing their careers with Praxivon. 
+            Start with our free courses and upgrade anytime.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg">
+              Get Started Free
+            </Button>
+            <Button size="lg" variant="outline">
+              View All Courses
+            </Button>
+          </div>
+        </section>
+      </div>
+    </MainLayout>
   );
 }
